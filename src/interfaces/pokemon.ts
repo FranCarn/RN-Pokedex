@@ -1,4 +1,4 @@
-export interface Pokedex {
+export interface PokemonPaginatedResponse {
   count: number;
   next: string;
   previous: null;
@@ -8,4 +8,10 @@ export interface Pokedex {
 export interface Result {
   name: string;
   url: string;
+}
+export interface SimplePokemon {
+  id: string;
+  color?: string;
+  name: string;
+  picture: string;
 }
