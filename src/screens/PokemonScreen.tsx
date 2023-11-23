@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, StyleSheet} from 'react-native';
 
 export const PokemonScreen = () => {
   return (
@@ -8,3 +8,4 @@ export const PokemonScreen = () => {
     </View>
   );
 };
+const styles = StyleSheet.create({});
