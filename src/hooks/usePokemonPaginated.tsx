@@ -42,5 +42,5 @@ export const usePokemonPaginated = () => {
     getInitialData();
   }, []);
 
-  return {isLoading, simplePokemonList};
+  return {isLoading, simplePokemonList, getInitialData};
 };
