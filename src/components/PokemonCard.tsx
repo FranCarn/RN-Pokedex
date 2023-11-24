@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {View, Text, StyleSheet, Dimensions, Image} from 'react-native';
 import {SimplePokemon} from '../interfaces/pokemon';
 import {FadeInImage} from './FadeInImage';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -20,7 +20,13 @@ export const PokemonCard = ({pokemon}: Props) => {
             {`\n#` + pokemon.id}
           </Text>
         </View>
-        <FadeInImage uri={pokemon.picture} style={{width: 100, height: 100}} />
+        <View style={styles.pokeballContainer}>
+          <Image
+            source={require('../assets/pokebola-blanca.png')}
+            style={styles.pokeball}
+          />
+        </View>
+        <FadeInImage uri={pokemon.picture} style={styles.pokemonImage} />
       </View>
     </TouchableOpacity>
   );
@@ -33,6 +39,14 @@ const styles = StyleSheet.create({
     width: 160,
     marginBottom: 25,
     borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   name: {
     color: '#fff',
@@ -40,5 +54,28 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     top: 20,
     left: 10,
+  },
+  pokeballContainer: {
+    width: 100,
+    height: 100,
+    position: 'absolute',
+    bottom: 0,
+    overflow: 'hidden',
+    right: 0,
+    opacity: 0.5,
+  },
+  pokeball: {
+    width: 100,
+    height: 100,
+    position: 'absolute',
+    bottom: -25,
+    right: -25,
+  },
+  pokemonImage: {
+    width: 120,
+    height: 120,
+    position: 'absolute',
+    right: -8,
+    bottom: -5,
   },
 });
