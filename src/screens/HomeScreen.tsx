@@ -33,7 +33,7 @@ export const HomeScreen = () => {
               Pokedex
             </Text>
           }
-          // infinite scroll
+          // infinite scroll config
           onEndReached={getInitialData}
           onEndReachedThreshold={0.4}
           ListFooterComponent={
