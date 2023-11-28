@@ -1,5 +1,6 @@
-import android.os.Bundle;
 package com.pokedex;
+
+import android.os.Bundle;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
