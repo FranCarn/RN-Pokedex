@@ -13,7 +13,6 @@ export const PokemonScreen = ({navigation, route: {params}}: Props) => {
   } = params;
   return (
     <View>
-      <Text style={{backgroundColor: color}}>{id}</Text>
       <Text style={{backgroundColor: color}}>{name}</Text>
       <Image source={{uri: picture}} />
     </View>
