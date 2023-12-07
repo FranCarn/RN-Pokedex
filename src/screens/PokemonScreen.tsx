@@ -24,18 +24,8 @@ export const PokemonScreen = ({navigation, route: {params}}: Props) => {
   const {top} = useSafeAreaInsets();
   const {isLoading, pokemon} = usePokemon(id);
 
-  if (isLoading) {
-    return (
-      <ActivityIndicator
-        style={{position: 'absolute'}}
-        color="grey"
-        size={30}
-      />
-    );
-  }
-
   return (
-    <View>
+    <View style={{flex: 1}}>
       <View style={{backgroundColor: color, ...styles.headerContainer}}>
         <TouchableOpacity
           activeOpacity={0.8}
@@ -52,6 +42,12 @@ export const PokemonScreen = ({navigation, route: {params}}: Props) => {
         />
         <FadeInImage uri={picture} style={styles.pokemonImage} />
       </View>
+
+      {isLoading && (
+        <View style={styles.loadingIndicator}>
+          <ActivityIndicator color="grey" size={30} />
+        </View>
+      )}
     </View>
   );
 };
@@ -84,5 +80,10 @@ const styles = StyleSheet.create({
     height: 250,
     position: 'absolute',
     bottom: -15,
+  },
+  loadingIndicator: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
