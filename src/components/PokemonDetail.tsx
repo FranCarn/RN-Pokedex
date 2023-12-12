@@ -1,12 +1,15 @@
 import React from 'react';
 import {ScrollView, Text, View, StyleSheet} from 'react-native';
 import {SinglePokemonFull} from '../interfaces/pokemon';
+import {FadeInImage} from './FadeInImage';
 interface Props {
   pokemon: SinglePokemonFull;
 }
 export const PokemonDetail = ({pokemon}: Props) => {
   return (
-    <ScrollView style={{...StyleSheet.absoluteFillObject}}>
+    <ScrollView
+      style={{...StyleSheet.absoluteFillObject}}
+      showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <Text style={styles.title}>Types</Text>
         <View style={{flexDirection: 'row'}}>
@@ -18,9 +21,57 @@ export const PokemonDetail = ({pokemon}: Props) => {
             </Text>
           ))}
         </View>
+        <Text style={styles.title}>Weight</Text>
+        <Text style={styles.regularText}>{pokemon.weight}lb</Text>
       </View>
-      <View style={{...styles.container, marginTop: 20}}>
+      <View style={styles.container}>
         <Text style={styles.title}>Sprites</Text>
+
+        <ScrollView
+          style={{}}
+          horizontal
+          showsHorizontalScrollIndicator={false}>
+          <FadeInImage
+            uri={pokemon.sprites.front_default}
+            style={styles.basicSprite}
+          />
+          <FadeInImage
+            uri={pokemon.sprites.back_default}
+            style={styles.basicSprite}
+          />
+          <FadeInImage
+            uri={pokemon.sprites.front_shiny}
+            style={styles.basicSprite}
+          />
+          <FadeInImage
+            uri={pokemon.sprites.back_shiny}
+            style={styles.basicSprite}
+          />
+        </ScrollView>
+        <View style={styles.container}>
+          <Text style={styles.title}>Base abilities</Text>
+          <View style={{flexDirection: 'row'}}>
+            {pokemon.abilities.map(({ability}) => (
+              <Text
+                key={ability.name}
+                style={{...styles.regularText, marginRight: 10}}>
+                {ability.name}
+              </Text>
+            ))}
+          </View>
+        </View>
+        <View style={styles.container}>
+          <Text style={styles.title}>Movements</Text>
+          <View style={{flexWrap: 'wrap', flexDirection: 'row'}}>
+            {pokemon.moves.map(({move}) => (
+              <Text
+                key={move.name}
+                style={{...styles.regularText, marginRight: 10}}>
+                {move.name}
+              </Text>
+            ))}
+          </View>
+        </View>
       </View>
     </ScrollView>
   );
@@ -34,8 +85,13 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: 'bold',
     fontSize: 22,
+    marginTop: 20,
   },
   regularText: {
     fontSize: 19,
+  },
+  basicSprite: {
+    width: 100,
+    height: 100,
   },
 });
