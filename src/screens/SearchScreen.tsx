@@ -20,11 +20,18 @@ export const SearchScreen = () => {
   useEffect(() => {
     if (!term) return setPokemonFiltered([]);
 
-    setPokemonFiltered(
-      simplePokemonList.filter(pokemon =>
-        pokemon.name.toLocaleLowerCase().includes(term.toLocaleLowerCase()),
-      ),
-    );
+    if (isNaN(Number(term))) {
+      setPokemonFiltered(
+        simplePokemonList.filter(pokemon =>
+          pokemon.name.toLocaleLowerCase().includes(term.toLocaleLowerCase()),
+        ),
+      );
+    } else {
+      const pokemonById = simplePokemonList.find(
+        pokemon => pokemon.id === term,
+      );
+      setPokemonFiltered(pokemonById ? [pokemonById] : []);
+    }
   }, [term]);
 
   if (isLoading) return <Loading />;
